@@ -40,6 +40,16 @@
 
         .buy-btn { background: #0070f3; color: white; border: none; width: 100%; padding: 14px; font-size: 16px; font-weight: 700; border-radius: 8px; cursor: pointer; text-align: center; display: block; text-decoration: none; transition: background 0.2s; }
         .buy-btn:hover { background: #0051a2; }
+
+        /* Modal Popup Styling */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 25px; border-radius: 16px; text-align: center; max-width: 350px; width: 90%; box-shadow: 0 15px 35px rgba(0,0,0,0.2); position: relative; }
+        .modal-content img { width: 250px; height: 250px; object-fit: contain; margin: 15px 0; border: 1px solid #e2e8f0; border-radius: 8px; }
+        .close-btn { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; color: #64748b; }
+        .thank-you-text { margin-top: 15px; font-size: 18px; font-weight: 700; color: #16a34a; }
+
+        /* Footer Thank You */
+        .footer-thank-you { text-align: center; margin: 40px 0 20px 0; font-size: 22px; font-weight: 700; color: #0f172a; }
     </style>
 </head>
 <body>
@@ -60,18 +70,10 @@
                 </div>
 
                 <div class="thumbnail-row">
-                    <div class="thumb active" onclick="switchImage(1, 'https://i.postimg.cc/CdYDLP6k/Screenshot-2026-07-27-08-23-44-30-40deb401b9ffe8e1df2f1cc5ba480b12.jpg', this)">
-                        <img src="https://i.postimg.cc/CdYDLP6k/Screenshot-2026-07-27-08-23-44-30-40deb401b9ffe8e1df2f1cc5ba480b12.jpg">
-                    </div>
-                    <div class="thumb" onclick="switchImage(1, 'https://i.postimg.cc/Sjq8NTtd/Screenshot-2026-07-27-08-24-05-29-40deb401b9ffe8e1df2f1cc5ba480b12.jpg', this)">
-                        <img src="https://i.postimg.cc/Sjq8NTtd/Screenshot-2026-07-27-08-24-05-29-40deb401b9ffe8e1df2f1cc5ba480b12.jpg">
-                    </div>
-                    <div class="thumb" onclick="switchImage(1, 'https://i.postimg.cc/z35WXtPF/Screenshot-2026-07-27-08-24-22-06-40deb401b9ffe8e1df2f1cc5ba480b12.jpg', this)">
-                        <img src="https://i.postimg.cc/z35WXtPF/Screenshot-2026-07-27-08-24-22-06-40deb401b9ffe8e1df2f1cc5ba480b12.jpg">
-                    </div>
-                    <div class="thumb" onclick="switchImage(1, 'https://i.postimg.cc/XX3F7HDx/Screenshot-2026-07-27-08-24-34-65-40deb401b9ffe8e1df2f1cc5ba480b12.jpg', this)">
-                        <img src="https://i.postimg.cc/XX3F7HDx/Screenshot-2026-07-27-08-24-34-65-40deb401b9ffe8e1df2f1cc5ba480b12.jpg">
-                    </div>
+                    <div class="thumb active" onclick="switchImage(1, 'https://i.postimg.cc/CdYDLP6k/Screenshot-2026-07-27-08-23-44-30-40deb401b9ffe8e1df2f1cc5ba480b12.jpg', this)"><img src="https://i.postimg.cc/CdYDLP6k/Screenshot-2026-07-27-08-23-44-30-40deb401b9ffe8e1df2f1cc5ba480b12.jpg"></div>
+                    <div class="thumb" onclick="switchImage(1, 'https://i.postimg.cc/Sjq8NTtd/Screenshot-2026-07-27-08-24-05-29-40deb401b9ffe8e1df2f1cc5ba480b12.jpg', this)"><img src="https://i.postimg.cc/Sjq8NTtd/Screenshot-2026-07-27-08-24-05-29-40deb401b9ffe8e1df2f1cc5ba480b12.jpg"></div>
+                    <div class="thumb" onclick="switchImage(1, 'https://i.postimg.cc/z35WXtPF/Screenshot-2026-07-27-08-24-22-06-40deb401b9ffe8e1df2f1cc5ba480b12.jpg', this)"><img src="https://i.postimg.cc/z35WXtPF/Screenshot-2026-07-27-08-24-22-06-40deb401b9ffe8e1df2f1cc5ba480b12.jpg"></div>
+                    <div class="thumb" onclick="switchImage(1, 'https://i.postimg.cc/XX3F7HDx/Screenshot-2026-07-27-08-24-34-65-40deb401b9ffe8e1df2f1cc5ba480b12.jpg', this)"><img src="https://i.postimg.cc/XX3F7HDx/Screenshot-2026-07-27-08-24-34-65-40deb401b9ffe8e1df2f1cc5ba480b12.jpg"></div>
                 </div>
 
                 <div class="product-title">ERHABIA Signature 01 Men’s Perfume | Long Lasting Premium Fragrance (100 ml)</div>
@@ -92,7 +94,7 @@
                     <li>100 ml elegant bottle design</li>
                 </ul>
 
-                <a href="upi://pay?pa=YOUR_UPI_ID@paytm&pn=Omnikart&am=4199.00&cu=INR" class="buy-btn">Pay ₹4,199 & Buy Now</a>
+                <button class="buy-btn" onclick="openPayment('₹4,199')">Pay ₹4,199 & Buy Now</button>
             </div>
 
             <!-- Product 2: MOOCCI Levitating Plant Pot -->
@@ -102,21 +104,11 @@
                 </div>
 
                 <div class="thumbnail-row">
-                    <div class="thumb active" onclick="switchImage(2, 'https://i.postimg.cc/CRfd4kQd/Screenshot-2026-07-27-00-13-00-90-680d03679600f7af0b4c700c6b270fe7.jpg', this)">
-                        <img src="https://i.postimg.cc/CRfd4kQd/Screenshot-2026-07-27-00-13-00-90-680d03679600f7af0b4c700c6b270fe7.jpg">
-                    </div>
-                    <div class="thumb" onclick="switchImage(2, 'https://i.postimg.cc/SnzjGCvx/Screenshot-2026-07-27-00-13-10-79-680d03679600f7af0b4c700c6b270fe7.jpg', this)">
-                        <img src="https://i.postimg.cc/SnzjGCvx/Screenshot-2026-07-27-00-13-10-79-680d03679600f7af0b4c700c6b270fe7.jpg">
-                    </div>
-                    <div class="thumb" onclick="switchImage(2, 'https://i.postimg.cc/k2tDyKpG/Screenshot-2026-07-27-00-13-24-19-680d03679600f7af0b4c700c6b270fe7.jpg', this)">
-                        <img src="https://i.postimg.cc/k2tDyKpG/Screenshot-2026-07-27-00-13-24-19-680d03679600f7af0b4c700c6b270fe7.jpg">
-                    </div>
-                    <div class="thumb" onclick="switchImage(2, 'https://i.postimg.cc/0zJrCDBN/Screenshot-2026-07-27-00-13-36-30-680d03679600f7af0b4c700c6b270fe7.jpg', this)">
-                        <img src="https://i.postimg.cc/0zJrCDBN/Screenshot-2026-07-27-00-13-36-30-680d03679600f7af0b4c700c6b270fe7.jpg">
-                    </div>
-                    <div class="thumb" onclick="switchImage(2, 'https://i.postimg.cc/bZ2dRkFM/Screenshot-2026-07-27-08-46-02-92-a2cf8efcdd42a8e6f7906303f104fb67.jpg', this)">
-                        <img src="https://i.postimg.cc/bZ2dRkFM/Screenshot-2026-07-27-08-46-02-92-a2cf8efcdd42a8e6f7906303f104fb67.jpg">
-                    </div>
+                    <div class="thumb active" onclick="switchImage(2, 'https://i.postimg.cc/CRfd4kQd/Screenshot-2026-07-27-00-13-00-90-680d03679600f7af0b4c700c6b270fe7.jpg', this)"><img src="https://i.postimg.cc/CRfd4kQd/Screenshot-2026-07-27-00-13-00-90-680d03679600f7af0b4c700c6b270fe7.jpg"></div>
+                    <div class="thumb" onclick="switchImage(2, 'https://i.postimg.cc/SnzjGCvx/Screenshot-2026-07-27-00-13-10-79-680d03679600f7af0b4c700c6b270fe7.jpg', this)"><img src="https://i.postimg.cc/SnzjGCvx/Screenshot-2026-07-27-00-13-10-79-680d03679600f7af0b4c700c6b270fe7.jpg"></div>
+                    <div class="thumb" onclick="switchImage(2, 'https://i.postimg.cc/k2tDyKpG/Screenshot-2026-07-27-00-13-24-19-680d03679600f7af0b4c700c6b270fe7.jpg', this)"><img src="https://i.postimg.cc/k2tDyKpG/Screenshot-2026-07-27-00-13-24-19-680d03679600f7af0b4c700c6b270fe7.jpg"></div>
+                    <div class="thumb" onclick="switchImage(2, 'https://i.postimg.cc/0zJrCDBN/Screenshot-2026-07-27-00-13-36-30-680d03679600f7af0b4c700c6b270fe7.jpg', this)"><img src="https://i.postimg.cc/0zJrCDBN/Screenshot-2026-07-27-00-13-36-30-680d03679600f7af0b4c700c6b270fe7.jpg"></div>
+                    <div class="thumb" onclick="switchImage(2, 'https://i.postimg.cc/bZ2dRkFM/Screenshot-2026-07-27-08-46-02-92-a2cf8efcdd42a8e6f7906303f104fb67.jpg', this)"><img src="https://i.postimg.cc/bZ2dRkFM/Screenshot-2026-07-27-08-46-02-92-a2cf8efcdd42a8e6f7906303f104fb67.jpg"></div>
                 </div>
 
                 <div class="product-title">MOOCCI Levitating Plant Pot, Floating air Planter | Air Bonsai (Black)</div>
@@ -137,7 +129,7 @@
                     <li>Stunning home office desk decor piece</li>
                 </ul>
 
-                <a href="upi://pay?pa=YOUR_UPI_ID@paytm&pn=Omnikart&am=4999.00&cu=INR" class="buy-btn">Pay ₹4,999 & Buy Now</a>
+                <button class="buy-btn" onclick="openPayment('₹4,999')">Pay ₹4,999 & Buy Now</button>
             </div>
 
             <!-- Product 3: AUSHA Raindrop Aroma Diffuser -->
@@ -147,15 +139,9 @@
                 </div>
 
                 <div class="thumbnail-row">
-                    <div class="thumb active" onclick="switchImage(3, 'https://i.postimg.cc/wtpxcPN2/Screenshot-2026-07-27-00-14-40-63-680d03679600f7af0b4c700c6b270fe7.jpg', this)">
-                        <img src="https://i.postimg.cc/wtpxcPN2/Screenshot-2026-07-27-00-14-40-63-680d03679600f7af0b4c700c6b270fe7.jpg">
-                    </div>
-                    <div class="thumb" onclick="switchImage(3, 'https://i.postimg.cc/Y4H2fVFP/Screenshot-2026-07-27-00-14-51-50-680d03679600f7af0b4c700c6b270fe7.jpg', this)">
-                        <img src="https://i.postimg.cc/Y4H2fVFP/Screenshot-2026-07-27-00-14-51-50-680d03679600f7af0b4c700c6b270fe7.jpg">
-                    </div>
-                    <div class="thumb" onclick="switchImage(3, 'https://i.postimg.cc/nsGFdkK1/Screenshot-2026-07-27-00-15-01-92-680d03679600f7af0b4c700c6b270fe7.jpg', this)">
-                        <img src="https://i.postimg.cc/nsGFdkK1/Screenshot-2026-07-27-00-15-01-92-680d03679600f7af0b4c700c6b270fe7.jpg">
-                    </div>
+                    <div class="thumb active" onclick="switchImage(3, 'https://i.postimg.cc/wtpxcPN2/Screenshot-2026-07-27-00-14-40-63-680d03679600f7af0b4c700c6b270fe7.jpg', this)"><img src="https://i.postimg.cc/wtpxcPN2/Screenshot-2026-07-27-00-14-40-63-680d03679600f7af0b4c700c6b270fe7.jpg"></div>
+                    <div class="thumb" onclick="switchImage(3, 'https://i.postimg.cc/Y4H2fVFP/Screenshot-2026-07-27-00-14-51-50-680d03679600f7af0b4c700c6b270fe7.jpg', this)"><img src="https://i.postimg.cc/Y4H2fVFP/Screenshot-2026-07-27-00-14-51-50-680d03679600f7af0b4c700c6b270fe7.jpg"></div>
+                    <div class="thumb" onclick="switchImage(3, 'https://i.postimg.cc/nsGFdkK1/Screenshot-2026-07-27-00-15-01-92-680d03679600f7af0b4c700c6b270fe7.jpg', this)"><img src="https://i.postimg.cc/nsGFdkK1/Screenshot-2026-07-27-00-15-01-92-680d03679600f7af0b4c700c6b270fe7.jpg"></div>
                 </div>
 
                 <div class="product-title">AUSHA Raindrop Aroma Diffuser with Rain Sound & White Noise (250ml)</div>
@@ -176,9 +162,24 @@
                     <li>Perfect for bedroom, office, yoga & relaxation</li>
                 </ul>
 
-                <a href="upi://pay?pa=YOUR_UPI_ID@paytm&pn=Omnikart&am=5599.00&cu=INR" class="buy-btn">Pay ₹5,599 & Buy Now</a>
+                <button class="buy-btn" onclick="openPayment('₹5,599')">Pay ₹5,599 & Buy Now</button>
             </div>
 
+        </div>
+
+        <div class="footer-thank-you">
+            Thank You for Shopping with Omnikart.in! 🙏
+        </div>
+    </div>
+
+    <!-- Payment QR Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePayment()">&times;</span>
+            <h3 style="color: #0f172a; font-size: 20px;">Scan & Pay</h3>
+            <p id="modal-price" style="color: #64748b; font-size: 15px; margin-top: 5px;"></p>
+            <img src="https://i.postimg.cc/LqDTmcBq/150458.jpg" alt="Payment QR Code">
+            <div class="thank-you-text">Thank You! 🎉</div>
         </div>
     </div>
 
@@ -191,6 +192,23 @@
             }
             element.classList.add('active');
         }
+
+        function openPayment(price) {
+            document.getElementById('modal-price').innerText = "Amount to Pay: " + price;
+            document.getElementById('paymentModal').style.display = "flex";
+        }
+
+        function closePayment() {
+            document.getElementById('paymentModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById('paymentModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
-</html>
+                                                                        </html>
+                                                                        
