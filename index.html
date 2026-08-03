@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,8 +51,9 @@
         .form-row { display: flex; gap: 10px; }
         .form-row .form-group { flex: 1; }
         .payment-box { border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; margin: 15px 0; background: #f8fafc; }
-        .payment-option { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 8px; }
-        .qr-section { text-align: center; margin-top: 10px; padding: 10px; border: 2px dashed #38bdf8; border-radius: 8px; background: #fff; }
+        .payment-option { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #1e293b; margin-bottom: 8px; cursor: pointer; }
+        .qr-section { text-align: center; margin-top: 10px; padding: 10px; border: 2px dashed #38bdf8; border-radius: 8px; background: #fff; display: block; }
+        .card-section { margin-top: 10px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; display: none; }
         .close-btn { background: #ef4444; color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: bold; }
     </style>
 </head>
@@ -221,13 +221,36 @@
                 <div class="payment-box">
                     <label style="font-size: 13px; font-weight: bold; color: #475569; display: block; margin-bottom: 8px;">Payment Method</label>
                     
-                    <div class="payment-option">
-                        <input type="radio" checked> Scan QR Code to Pay
+                    <!-- UPI / QR Option -->
+                    <div class="payment-option" onclick="selectPaymentMethod('qr')">
+                        <input type="radio" id="payQr" name="Payment_Method" value="UPI / QR Code" checked> Scan QR Code to Pay (UPI)
                     </div>
                     
-                    <div class="qr-section">
+                    <div id="qrSection" class="qr-section">
                         <p style="font-size: 12px; font-weight: bold; color: #0f172a; margin-bottom: 5px;">Scan via GPay / PhonePe / Paytm / UPI</p>
                         <img src="https://i.postimg.cc/62hXncLQ/IMG-20260726-WA0001.jpg" alt="Payment QR Code" style="width: 140px; height: 140px; object-fit: contain; image-rendering: -webkit-optimize-contrast;">
+                    </div>
+
+                    <!-- Credit / Debit Card Option -->
+                    <div class="payment-option" onclick="selectPaymentMethod('card')" style="margin-top: 12px;">
+                        <input type="radio" id="payCard" name="Payment_Method" value="Credit/Debit Card"> Credit / Debit Card
+                    </div>
+
+                    <div id="cardSection" class="card-section">
+                        <div class="form-group" style="margin-bottom: 8px;">
+                            <label style="font-size: 11px;">Card Number</label>
+                            <input type="text" name="Card_Number" placeholder="16-digit card number" maxlength="19">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label style="font-size: 11px;">Expiry (MM/YY)</label>
+                                <input type="text" name="Card_Expiry" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label style="font-size: 11px;">CVV</label>
+                                <input type="password" name="Card_CVV" placeholder="CVV" maxlength="4">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -259,6 +282,18 @@
         function closeCheckout() {
             document.getElementById('checkoutModal').style.display = 'none';
         }
+
+        function selectPaymentMethod(method) {
+            if (method === 'qr') {
+                document.getElementById('payQr').checked = true;
+                document.getElementById('qrSection').style.display = 'block';
+                document.getElementById('cardSection').style.display = 'none';
+            } else if (method === 'card') {
+                document.getElementById('payCard').checked = true;
+                document.getElementById('qrSection').style.display = 'none';
+                document.getElementById('cardSection').style.display = 'block';
+            }
+        }
     </script>
 </body>
-                            </html>
+</html>
